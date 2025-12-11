@@ -23,7 +23,6 @@ public:
 
         std::cout << "Producer: send event #" << eventCounter_ << std::endl;
 
-        lock.unlock();
         cv_.notify_one();
     }
 
@@ -43,7 +42,6 @@ public:
 
         std::cout << "Consumer: receive event #" << eventCounter_ << std::endl;
 
-        lock.unlock();
         cv_.notify_one();
 
         return result;
