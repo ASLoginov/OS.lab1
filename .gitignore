@@ -12,3 +12,23 @@ Monitors/Monitors/Monitors.vcxproj
 Monitors/Monitors/Monitors.vcxproj.filters
 
 Monitors/Monitors/Monitors.vcxproj.user
+.vscode/launch.json
+.vscode/tasks.json
+Kernel/.vscode/
+Kernel/..module-common.o.cmd
+Kernel/.module-common.o
+Kernel/.Module.symvers.cmd
+Kernel/.modules.order.cmd
+Kernel/.tsulab.ko.cmd
+Kernel/.tsulab.mod.cmd
+Kernel/.tsulab.mod.o.cmd
+Kernel/.tsulab.o.cmd
+Kernel/Module.symvers
+Kernel/modules.order
+Kernel/tsulab.ko
+Kernel/tsulab.mod
+Kernel/tsulab.mod.c
+Kernel/tsulab.mod.o
+Kernel/tsulab.o
+.vscode-ctags
+Monitors/Monitors/monitor
