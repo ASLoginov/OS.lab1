@@ -108,10 +108,9 @@ static void print_container_if_matches(struct seq_file *m,
         if (id_len <= 0)
             return;
 
-        seq_printf(m, "%.*s  mem.max=%s  cgroup=%s/%.*s\n",
+        seq_printf(m, "%.*s  mem.max=%s\n",
                    id_len, dir_name + plen,
-                   no_limit ? "max" : strim(tmp),
-                   slice_path, dir_namelen, dir_name);
+                   no_limit ? "max" : strim(tmp));
     }
 }
 
