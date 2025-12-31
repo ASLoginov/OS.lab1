@@ -114,24 +114,44 @@ static void print_container_if_matches(struct seq_file *m,
     }
 }
 
-
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
 static bool scan_actor(struct dir_context *ctx, const char *name, int namelen,
                        loff_t offset, u64 ino, unsigned int d_type)
+#else
+static int scan_actor(struct dir_context *ctx, const char *name, int namelen,
+                      loff_t offset, u64 ino, unsigned int d_type)
+#endif
 {
     struct scan_ctx *s = container_of(ctx, struct scan_ctx, ctx);
 
     if ((namelen == 1 && name[0] == '.') ||
         (namelen == 2 && name[0] == '.' && name[1] == '.'))
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
         return true;
+#else
+        return 0;
+#endif
 
     if (d_type != DT_DIR && d_type != DT_UNKNOWN)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
         return true;
+#else
+        return 0;
+#endif
 
     if (!name_is_docker_scope(name, namelen))
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
         return true;
+#else
+        return 0;
+#endif
 
     print_container_if_matches(s->m, s->slice_path, name, namelen, s->half_phys_bytes);
-    return true;
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
+        return true;
+#else
+        return 0;
+#endif
 }
 
 static void scan_slice(struct seq_file *m, const char *slice_path, u64 half_phys_bytes)
